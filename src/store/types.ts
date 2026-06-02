@@ -46,6 +46,7 @@ export type FontFamily = "system" | "serif" | "mono";
 export interface SettingsState {
   apiKey: string;
   userAvatar: AvatarConfig;
+  robotAvatar: AvatarConfig;
   chatBackground: BackgroundConfig;
   bubbleStyle: BubbleStyle;
   fontFamily: FontFamily;
@@ -87,6 +88,7 @@ export type ThemeAction =
 export type SettingsAction =
   | { type: "SET_API_KEY"; payload: string }
   | { type: "SET_AVATAR"; payload: AvatarConfig }
+  | { type: "SET_ROBOT_AVATAR"; payload: AvatarConfig }
   | { type: "SET_BACKGROUND"; payload: BackgroundConfig }
   | { type: "SET_BUBBLE_STYLE"; payload: BubbleStyle }
   | { type: "SET_FONT_FAMILY"; payload: FontFamily }

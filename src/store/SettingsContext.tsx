@@ -26,6 +26,8 @@ function reducer(state: SettingsState, action: SettingsAction): SettingsState {
       return { ...state, apiKey: action.payload };
     case "SET_AVATAR":
       return { ...state, userAvatar: action.payload };
+    case "SET_ROBOT_AVATAR":
+      return { ...state, robotAvatar: action.payload };
     case "SET_BACKGROUND":
       return { ...state, chatBackground: action.payload };
     case "SET_BUBBLE_STYLE":
@@ -45,6 +47,7 @@ interface SettingsContextValue {
   state: SettingsState;
   setApiKey: (key: string) => void;
   setAvatar: (avatar: AvatarConfig) => void;
+  setRobotAvatar: (avatar: AvatarConfig) => void;
   setBackground: (bg: BackgroundConfig) => void;
   setBubbleStyle: (style: BubbleStyle) => void;
   setFontFamily: (font: FontFamily) => void;
@@ -81,6 +84,8 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
         state,
         setApiKey: (key) => dispatch({ type: "SET_API_KEY", payload: key }),
         setAvatar: (a) => dispatch({ type: "SET_AVATAR", payload: a }),
+        setRobotAvatar: (a) =>
+          dispatch({ type: "SET_ROBOT_AVATAR", payload: a }),
         setBackground: (bg) =>
           dispatch({ type: "SET_BACKGROUND", payload: bg }),
         setBubbleStyle: (s) =>

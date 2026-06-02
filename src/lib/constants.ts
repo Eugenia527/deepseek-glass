@@ -30,7 +30,27 @@ export const AVATAR_PRESETS: AvatarPreset[] = [
   { type: "preset", value: "💎", label: "钻石" },
 ];
 
+export const ROBOT_AVATAR_PRESETS: AvatarPreset[] = [
+  { type: "preset", value: "🤖", label: "机器人" },
+  { type: "preset", value: "🧠", label: "大脑" },
+  { type: "preset", value: "💡", label: "灯泡" },
+  { type: "preset", value: "🚀", label: "火箭" },
+  { type: "preset", value: "🎓", label: "学者" },
+  { type: "preset", value: "⚡", label: "闪电" },
+  { type: "preset", value: "🔮", label: "水晶球" },
+  { type: "preset", value: "🦉", label: "猫头鹰" },
+  { type: "preset", value: "💎", label: "钻石" },
+  { type: "preset", value: "🌈", label: "彩虹" },
+  { type: "preset", value: "🎯", label: "靶心" },
+  { type: "preset", value: "🌐", label: "地球" },
+];
+
 export const BACKGROUND_PRESETS: BackgroundPreset[] = [
+  {
+    type: "preset-gradient",
+    value: "#ffffff",
+    label: "纯白",
+  },
   {
     type: "preset-gradient",
     value: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
@@ -97,7 +117,8 @@ export const SUGGESTED_PROMPTS = [
 export const DEFAULT_SETTINGS = {
   apiKey: "",
   userAvatar: AVATAR_PRESETS[3], // 🦊 默认
-  chatBackground: BACKGROUND_PRESETS[0], // 暮光紫
+  robotAvatar: ROBOT_AVATAR_PRESETS[0], // 🤖 默认
+  chatBackground: BACKGROUND_PRESETS[0], // 纯白
   bubbleStyle: "bubbles" as const,
   fontFamily: "system" as const,
   defaultModel: "deepseek-chat" as const,

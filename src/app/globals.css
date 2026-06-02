@@ -208,27 +208,38 @@
   }
 }
 
-/* User message bubble style */
+/* User message bubble — light pink liquid glass */
 @utility bubble-user {
-  background: linear-gradient(135deg, #6366f1, #818cf8);
-  color: white;
+  background: rgba(255, 182, 193, 0.35);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 182, 193, 0.4);
+  color: #8b4050;
   border-radius: 20px 20px 6px 20px;
   padding: 0.75rem 1.25rem;
-  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 16px rgba(255, 182, 193, 0.25);
+  .dark & {
+    background: rgba(255, 182, 193, 0.2);
+    border-color: rgba(255, 182, 193, 0.25);
+    color: #f0c0c8;
+    box-shadow: 0 4px 16px rgba(255, 182, 193, 0.12);
+  }
 }
 
-/* AI message bubble style */
+/* AI message bubble — semi-transparent liquid glass */
 @utility bubble-ai {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 20px 20px 20px 6px;
   padding: 0.75rem 1.25rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 
   .dark & {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   }
 }
 

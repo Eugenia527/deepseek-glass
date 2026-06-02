@@ -7,10 +7,12 @@ import { GlassButton } from "@/components/ui/GlassButton";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useEffect, useState } from "react";
 import { GlassInput } from "@/components/ui/GlassInput";
+import { MODELS } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   const router = useRouter();
-  const { state, setApiKey } = useSettings();
+  const { state, setApiKey, setDefaultModel } = useSettings();
   const [mounted, setMounted] = useState(false);
   const [keyInput, setKeyInput] = useState(state.apiKey || "");
 
@@ -44,8 +46,12 @@ export default function Home() {
         className="w-full max-w-md p-8 flex flex-col items-center gap-5 animate-scale-in z-10"
       >
         {/* Logo */}
-        <div className="w-20 h-20 rounded-[28px] glass flex items-center justify-center text-4xl shadow-glass-lg">
-          🤖
+        <div className="w-20 h-20 rounded-[28px] glass flex items-center justify-center text-4xl shadow-glass-lg overflow-hidden">
+          {mounted && state.robotAvatar.type === "url" ? (
+            <img src={state.robotAvatar.value} alt="Robot" className="w-full h-full object-cover rounded-[28px]" />
+          ) : (
+            state.robotAvatar.value
+          )}
         </div>
 
         <div className="text-center">
@@ -122,6 +128,39 @@ export default function Home() {
         {mounted && state.apiKey && (
           <p className="text-xs text-green-400/70">✓ 已配置 · 可直接开始</p>
         )}
+      </GlassCard>
+
+      {/* Model Selection Card */}
+      <GlassCard
+        variant="default"
+        className="w-full max-w-md p-5 space-y-3 animate-slide-up z-10"
+        style={{ animationDelay: "0.15s", animationFillMode: "both" }}
+      >
+        <div className="flex items-center gap-2 mb-1">
+          <span className="text-lg">🧠</span>
+          <h2 className="text-sm font-semibold text-foreground/70">
+            选择模型
+          </h2>
+        </div>
+        <div className="flex gap-2">
+          {MODELS.map((model) => (
+            <button
+              key={model.id}
+              onClick={() => setDefaultModel(model.id)}
+              className={cn(
+                "flex-1 py-3 rounded-xl text-sm font-medium transition-all flex flex-col items-center gap-1",
+                state.defaultModel === model.id
+                  ? "glass glass-dark ring-1 ring-indigo-400/50"
+                  : "glass-subtle hover:bg-white/10",
+              )}
+            >
+              <span className="text-sm">{model.name}</span>
+              <span className="text-[10px] text-foreground/40">
+                {model.description}
+              </span>
+            </button>
+          ))}
+        </div>
       </GlassCard>
 
       {/* Enter button */}

@@ -124,8 +124,12 @@ function MessagesListPage() {
                       editing && "cursor-default",
                     )}
                   >
-                    <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-xl shrink-0 shadow-sm">
-                      🤖
+                    <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-xl shrink-0 shadow-sm overflow-hidden">
+                      {settings.robotAvatar.type === "url" ? (
+                        <img src={settings.robotAvatar.value} alt="AI" className="w-full h-full object-cover rounded-full" />
+                      ) : (
+                        settings.robotAvatar.value
+                      )}
                     </div>
                     <div className="flex-1 min-w-0 py-1">
                       <div className="flex items-center justify-between">
@@ -304,7 +308,13 @@ function ChatDetailPage({ id }: { id: string }) {
                 <polyline points="15 18 9 12 15 6" />
               </svg>
             </button>
-            <div className="w-9 h-9 rounded-full glass flex items-center justify-center text-lg shrink-0">🤖</div>
+            <div className="w-9 h-9 rounded-full glass flex items-center justify-center text-lg shrink-0 overflow-hidden">
+              {settings.robotAvatar.type === "url" ? (
+                <img src={settings.robotAvatar.value} alt="AI" className="w-full h-full object-cover rounded-full" />
+              ) : (
+                settings.robotAvatar.value
+              )}
+            </div>
             <div className="flex-1 min-w-0">
               <h1 className="text-base font-semibold text-foreground/90 truncate">
                 {session?.title || "DeepSeek"}
@@ -336,14 +346,20 @@ function ChatDetailPage({ id }: { id: string }) {
                     )}
                     <div className={cn("flex gap-2", isUser ? "flex-row-reverse" : "flex-row")}>
                       {!isUser && (
-                        <div className="w-7 h-7 rounded-full glass flex items-center justify-center text-sm shrink-0 mt-1">🤖</div>
+                        <div className="w-7 h-7 rounded-full glass flex items-center justify-center text-sm shrink-0 mt-1 overflow-hidden">
+                          {settings.robotAvatar.type === "url" ? (
+                            <img src={settings.robotAvatar.value} alt="AI" className="w-full h-full object-cover rounded-full" />
+                          ) : (
+                            settings.robotAvatar.value
+                          )}
+                        </div>
                       )}
                       <div
                         className={cn(
                           "max-w-[75%] px-4 py-2.5 text-[15px] leading-relaxed",
                           isUser
-                            ? "bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-[20px_20px_4px_20px] shadow-md shadow-indigo-500/20"
-                            : "glass rounded-[20px_20px_20px_4px] message-content",
+                            ? "bubble-user"
+                            : "bubble-ai message-content",
                           isStreamingMsg && "streaming-cursor",
                         )}
                       >
@@ -356,8 +372,12 @@ function ChatDetailPage({ id }: { id: string }) {
                         )}
                       </div>
                       {isUser && (
-                        <div className="w-7 h-7 rounded-full glass flex items-center justify-center text-sm shrink-0 mt-1">
-                          {mounted ? settings.userAvatar.value : "🧑"}
+                        <div className="w-7 h-7 rounded-full glass flex items-center justify-center text-sm shrink-0 mt-1 overflow-hidden">
+                          {settings.userAvatar.type === "url" ? (
+                            <img src={settings.userAvatar.value} alt="User" className="w-full h-full object-cover rounded-full" />
+                          ) : (
+                            settings.userAvatar.value
+                          )}
                         </div>
                       )}
                     </div>

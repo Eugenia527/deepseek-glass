@@ -14,9 +14,13 @@ export function WelcomeScreen({ onPromptClick }: WelcomeScreenProps) {
 
   return (
     <div className="flex flex-col items-center gap-6 max-w-md mx-auto text-center animate-scale-in">
-      {/* Claude-style greeting avatar */}
-      <div className="w-20 h-20 rounded-full glass-strong flex items-center justify-center text-4xl">
-        🤖
+      {/* Robot greeting avatar */}
+      <div className="w-20 h-20 rounded-full glass-strong flex items-center justify-center text-4xl overflow-hidden">
+        {settings.robotAvatar.type === "url" ? (
+          <img src={settings.robotAvatar.value} alt="AI" className="w-full h-full object-cover rounded-full" />
+        ) : (
+          settings.robotAvatar.value
+        )}
       </div>
 
       <div>

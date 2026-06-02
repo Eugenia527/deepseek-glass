@@ -36,9 +36,9 @@ export function BubbleStyleCustomizer() {
             "self-end px-3 py-1.5 text-xs max-w-[70%]",
             state.bubbleStyle === "bubbles" && "bubble-user",
             state.bubbleStyle === "rounded" &&
-              "bubble-rounded bg-indigo-500 text-white",
+              "bubble-rounded bg-pink-300/40 backdrop-blur-md text-pink-800",
             state.bubbleStyle === "flat" &&
-              "bubble-flat bg-indigo-500 text-white",
+              "bubble-flat bg-pink-300/40 backdrop-blur-md text-pink-800",
           )}
         >
           这是一条用户消息预览
