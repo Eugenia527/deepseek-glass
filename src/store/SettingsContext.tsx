@@ -60,7 +60,11 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(
     reducer,
     DEFAULT_SETTINGS,
-    (d) => getItem<SettingsState>(STORAGE_KEY, d),
+    (d) => {
+      const saved = getItem<Partial<SettingsState>>(STORAGE_KEY, {});
+      // Merge saved settings with defaults, ensuring new fields exist
+      return { ...d, ...saved };
+    },
   );
 
   useEffect(() => {
