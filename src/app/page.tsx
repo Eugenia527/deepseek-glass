@@ -5,13 +5,18 @@ import { useSettings } from "@/store/SettingsContext";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { GlassButton } from "@/components/ui/GlassButton";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GlassInput } from "@/components/ui/GlassInput";
 
 export default function Home() {
   const router = useRouter();
   const { state, setApiKey } = useSettings();
+  const [mounted, setMounted] = useState(false);
   const [keyInput, setKeyInput] = useState(state.apiKey || "");
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSaveKey = () => {
     if (keyInput.trim()) {
@@ -114,7 +119,7 @@ export default function Home() {
           </GlassButton>
         </div>
 
-        {state.apiKey && (
+        {mounted && state.apiKey && (
           <p className="text-xs text-green-400/70">✓ 已配置 · 可直接开始</p>
         )}
       </GlassCard>
@@ -127,7 +132,7 @@ export default function Home() {
         className="animate-slide-up z-10"
         style={{ animationDelay: "0.2s", animationFillMode: "both" }}
       >
-        {state.apiKey ? "🚀 开始聊天" : "⚙️ 跳过设置，先看看"}
+        {mounted && state.apiKey ? "🚀 开始聊天" : "⚙️ 跳过设置，先看看"}
       </GlassButton>
 
       {/* Footer */}
